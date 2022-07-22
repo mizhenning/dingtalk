@@ -23,9 +23,9 @@ class Client extends BaseClient
      *
      * @return mixed
      */
-    public function get($userid, $lang = null)
+    public function get($userid, $language = 'zh_CN')
     {
-        return $this->client->get('user/get', compact('userid', 'lang'));
+        return $this->client->postJson('topapi/v2/user/get', compact('userid', 'language'));
     }
 
     /**
@@ -37,7 +37,7 @@ class Client extends BaseClient
      */
     public function getUserIds($departmentId)
     {
-        return $this->client->get('user/getDeptMember', ['deptId' => $departmentId]);
+        return $this->client->postJson('topapi/user/listid', ['dept_id' => $departmentId]);
     }
 
     /**
@@ -51,10 +51,10 @@ class Client extends BaseClient
      *
      * @return mixed
      */
-    public function getUsers($departmentId, $offset, $size, $order = null, $lang = null)
+    public function getUsers($departmentId, $offset, $size = 10, $order = null, $contain_access_limit = false, $lang = null)
     {
-        return $this->client->get('user/simplelist', [
-            'department_id' => $departmentId, 'offset' => $offset, 'size' => $size, 'order' => $order, 'lang' => $lang,
+        return $this->client->postJson('topapi/user/listsimple', [
+            'dept_id' => $departmentId, 'cursor' => $offset, 'size' => $size, 'order_field' => $order, 'contain_access_limit' => $contain_access_limit, 'lang' => $lang,
         ]);
     }
 
@@ -69,10 +69,10 @@ class Client extends BaseClient
      *
      * @return mixed
      */
-    public function getDetailedUsers($departmentId, $offset, $size, $order = null, $lang = null)
+    public function getDetailedUsers($departmentId, $offset, $size = 10, $order = null, $contain_access_limit = false, $lang = null)
     {
-        return $this->client->get('user/listbypage', [
-            'department_id' => $departmentId, 'offset' => $offset, 'size' => $size, 'order' => $order, 'lang' => $lang,
+        return $this->client->postJson('topapi/v2/user/list', [
+            'dept_id' => $departmentId, 'cursor' => $offset, 'size' => $size, 'order_field' => $order, 'contain_access_limit' => $contain_access_limit, 'lang' => $lang,
         ]);
     }
 
@@ -83,7 +83,7 @@ class Client extends BaseClient
      */
     public function administrators()
     {
-        return $this->client->get('user/get_admin');
+        return $this->client->post('topapi/user/listadmin');
     }
 
     /**
@@ -95,7 +95,7 @@ class Client extends BaseClient
      */
     public function administratorScope($userid)
     {
-        return $this->client->get('topapi/user/get_admin_scope', compact('userid'));
+        return $this->client->post('topapi/user/get_admin_scope', compact('userid'));
     }
 
     /**
@@ -107,7 +107,7 @@ class Client extends BaseClient
      */
     public function getUseridByUnionid($unionid)
     {
-        return $this->client->get('user/getUseridByUnionid', compact('unionid'));
+        return $this->client->postJson('topapi/user/getbyunionid', compact('unionid'));
     }
 
     /**
@@ -119,7 +119,7 @@ class Client extends BaseClient
      */
     public function create(array $params)
     {
-        return $this->client->postJson('user/create', $params);
+        return $this->client->postJson('topapi/v2/user/create', $params);
     }
 
     /**
@@ -132,7 +132,7 @@ class Client extends BaseClient
      */
     public function update($userid, array $params)
     {
-        return $this->client->postJson('user/update', compact('userid') + $params);
+        return $this->client->postJson('topapi/v2/user/update', compact('userid') + $params);
     }
 
     /**
@@ -144,7 +144,7 @@ class Client extends BaseClient
      */
     public function delete($userid)
     {
-        return $this->client->get('user/delete', compact('userid'));
+        return $this->client->postJson('topapi/v2/user/delete', compact('userid'));
     }
 
     /**
@@ -156,7 +156,7 @@ class Client extends BaseClient
      */
     public function getUserByCode($code)
     {
-        return $this->client->get('user/getuserinfo', compact('code'));
+        return $this->client->postJson('topapi/v2/user/getuserinfo', compact('code'));
     }
 
     /**
@@ -194,13 +194,13 @@ class Client extends BaseClient
     /**
      * 获取企业员工人数
      *
-     * @param int $onlyActive
+     * @param int $only_active
      *
      * @return mixed
      */
-    public function getCount($onlyActive = 0)
+    public function getCount($only_active = false)
     {
-        return $this->client->get('user/get_org_user_count', compact('onlyActive'));
+        return $this->client->postJson('topapi/user/count', compact('only_active'));
     }
 
     /**
@@ -210,7 +210,7 @@ class Client extends BaseClient
      */
     public function getActivatedCount()
     {
-        return $this->getCount(1);
+        return $this->getCount(true);
     }
 
     /**
@@ -222,7 +222,7 @@ class Client extends BaseClient
      */
     public function getUserIdByPhone($mobile = '')
     {
-        return $this->client->get('user/get_by_mobile', compact('mobile'));
+        return $this->client->postJson('topapi/v2/user/getbymobile', compact('mobile'));
     }
 
     /**
@@ -234,10 +234,10 @@ class Client extends BaseClient
      *
      * @return mixed
      */
-    public function getInactiveUsers($query_date, $offset, $size)
+    public function getInactiveUsers($query_date, $offset, $size, $is_active = false, $dept_ids = null)
     {
-        return $this->client->postJson('topapi/inactive/user/get', [
-            'query_date' => $query_date, 'offset' => $offset, 'size' => $size
+        return $this->client->postJson('topapi/inactive/user/v2/get', [
+            'query_date' => $query_date, 'offset' => $offset, 'size' => $size, 'is_active' => false, 'dept_ids' => $dept_ids
         ]);
     }
 }

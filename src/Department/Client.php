@@ -44,6 +44,22 @@ class Client extends BaseClient
     }
 
     /**
+     * V2版本，只获取一级部门
+     */
+    public function listSub($dept_id = null, $lang = 'zh_CN')
+    {
+        return $this->client->postJson('topapi/v2/department/listsub', ['dept_id' => $dept_id, 'language' => $lang]);
+    }
+
+    /**
+     * V2版本，获取子部门ID列表
+     */
+    public function listSubId($dept_id)
+    {
+        return $this->client->postJson('topapi/v2/department/listsubid', ['dept_id' => $dept_id]);
+    }
+
+    /**
      * 获取部门详情
      *
      * @param string $id
@@ -51,9 +67,9 @@ class Client extends BaseClient
      *
      * @return mixed
      */
-    public function get($id, $lang = null)
+    public function get($id, $lang = 'zh_CN')
     {
-        return $this->client->get('department/get', compact('id', 'lang'));
+        return $this->client->postJson('topapi/v2/department/get', ['dept_id' => $id, 'language' => $lang]);
     }
 
     /**
