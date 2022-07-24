@@ -14,6 +14,12 @@
 
 EasyDingTalk 封装了钉钉身份验证、通讯录管理、消息通知、审批、群机器人、业务事件回调管理等服务端接口，让开发者可以使用简单的配置，提供简洁的 API 以供方便快速地调用钉钉接口。
 
+由于项目需求，找了好几个第三方包，维护基本都处于停滞状态，好多接口已不能使用，故fork了此库
+
+forked from [https://github.com/jerminegao/dingtalk](jerminegao/dingtalk)
+
+```此库目前为自用版本，如需使用，请谨慎选择```
+
 ## 环境要求
 
 - PHP 7.0+
@@ -22,7 +28,7 @@ EasyDingTalk 封装了钉钉身份验证、通讯录管理、消息通知、审�
 ## 安装
 
 ```bash
-composer require jerminegao/dingtalk:^2.0
+composer require anyforever/dingtalk
 ```
 
 ## 使用
@@ -42,7 +48,7 @@ $app = new Application($config);
 
 ## 文档
 
-[https://docs.easydingtalk.org](https://docs.easydingtalk.org)
+[https://easydingtalk.github.io/start.html](https://easydingtalk.github.io/start.html)
 
 
 ## License
