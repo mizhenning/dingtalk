@@ -52,6 +52,18 @@ class Client extends BaseClient
     }
 
     /**
+     * 创建或更新审批模板
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function save($params)
+    {
+        return $this->client->postJson('topapi/process/save', ['saveProcessRequest' => $params]);
+    }
+
+    /**
      * 获取用户待审批数量
      *
      * @param string $userId
