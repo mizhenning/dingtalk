@@ -172,4 +172,16 @@ class Client extends BaseClient
     {
         return $this->client->postJson('topapi/process/instance/comment/add', ['request' => $params]);
     }
+
+    /**
+     * 获取审批钉盘空间信息
+     * https://open.dingtalk.com/document/orgapp-server/query-the-space-of-an-approval-nail
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function cspaceInfo($params)
+    {
+        return $this->client->postJson('topapi/processinstance/cspace/info', $params);
+    }
 }
