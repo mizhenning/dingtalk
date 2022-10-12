@@ -184,4 +184,28 @@ class Client extends BaseClient
     {
         return $this->client->postJson('topapi/processinstance/cspace/info', $params);
     }
+
+    /**
+     * 授权用户访问企业的自定义空间
+     * https://open.dingtalk.com/document/orgapp-server/authorize-a-user-to-access-a-custom-workspace-of-an
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function grantCustomSpace($params)
+    {
+        return $this->client->get('cspace/grant_custom_space', $params);
+    }
+
+    /**
+     * 授权预览审批附件
+     * https://open.dingtalk.com/document/isvapp-server/preview-authorization-attachment
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function cspacePreview($params)
+    {
+        return $this->client->postJson('topapi/processinstance/cspace/preview', ['request' => $params]);
+    }
 }
