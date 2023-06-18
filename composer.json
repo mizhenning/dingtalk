@@ -1,5 +1,5 @@
 {
-    "name": "anyforever/dingtalk",
+    "name": "mizhenning/dingtalk",
     "description": "EasyDingTalk, Alibaba Dingtalk SDK for PHP",
     "keywords": [
         "dingtalk",
@@ -12,8 +12,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "张铭阳",
-            "email": "mingyoungcheung@gmail.com"
+            "name": "秘振宁",
+            "email": "mizhenning@gmail.com"
         }
     ],
     "require": {

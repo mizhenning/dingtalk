@@ -20,6 +20,9 @@ forked from [https://github.com/jerminegao/dingtalk](jerminegao/dingtalk)
 
 ```此库目前为自用版本，如需使用，请谨慎选择```
 
+```此库目前为自用版本，如需使用，请谨慎选择```
+```此库目前为自用版本，如需使用，请谨慎选择```
+```此库目前为自用版本，如需使用，请谨慎选择```
 ## 环境要求
 
 - PHP 7.0+
