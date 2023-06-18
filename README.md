@@ -31,7 +31,7 @@ forked from [https://github.com/jerminegao/dingtalk](jerminegao/dingtalk)
 ## 安装
 
 ```bash
-composer require anyforever/dingtalk
+composer require mizhenning/dingtalk
 ```
 
 ## 使用
